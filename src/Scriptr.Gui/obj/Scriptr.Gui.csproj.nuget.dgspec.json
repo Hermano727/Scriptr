@@ -1,0 +1,131 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\herma\\Desktop\\projects\\Scriptr\\src\\Scriptr.Gui\\Scriptr.Gui.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\herma\\Desktop\\projects\\Scriptr\\src\\Scriptr.Core\\Scriptr.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\herma\\Desktop\\projects\\Scriptr\\src\\Scriptr.Core\\Scriptr.Core.csproj",
+        "projectName": "Scriptr.Core",
+        "projectPath": "C:\\Users\\herma\\Desktop\\projects\\Scriptr\\src\\Scriptr.Core\\Scriptr.Core.csproj",
+        "packagesPath": "C:\\Users\\herma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\herma\\Desktop\\projects\\Scriptr\\src\\Scriptr.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\herma\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.422/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\herma\\Desktop\\projects\\Scriptr\\src\\Scriptr.Gui\\Scriptr.Gui.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\herma\\Desktop\\projects\\Scriptr\\src\\Scriptr.Gui\\Scriptr.Gui.csproj",
+        "projectName": "Scriptr",
+        "projectPath": "C:\\Users\\herma\\Desktop\\projects\\Scriptr\\src\\Scriptr.Gui\\Scriptr.Gui.csproj",
+        "packagesPath": "C:\\Users\\herma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\herma\\Desktop\\projects\\Scriptr\\src\\Scriptr.Gui\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\herma\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\Users\\herma\\Desktop\\projects\\Scriptr\\src\\Scriptr.Core\\Scriptr.Core.csproj": {
+                "projectPath": "C:\\Users\\herma\\Desktop\\projects\\Scriptr\\src\\Scriptr.Core\\Scriptr.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WindowsForms": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.422/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

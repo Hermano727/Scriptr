@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>12</LangVersion>
+    <AssemblyName>Scriptr</AssemblyName>
+    <RootNamespace>Scriptr.Gui</RootNamespace>
+  </PropertyGroup>
+
+  <!-- Embedded into PE resource slots (taskbar, Explorer) only when the ICO exists.
+       build_release.ps1 generates it from scriptr_icon.png before dotnet publish runs. -->
+  <PropertyGroup Condition="Exists('Assets\scriptr_icon.ico')">
+    <ApplicationIcon>Assets\scriptr_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishTrimmed>false</PublishTrimmed>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Embedded so LoadAppIcon() can resolve it from the assembly manifest at runtime -->
+    <EmbeddedResource Include="Assets\scriptr_icon.ico"
+                      LogicalName="Scriptr.Assets.scriptr_icon.ico"
+                      Condition="Exists('Assets\scriptr_icon.ico')" />
+    <ProjectReference Include="..\Scriptr.Core\Scriptr.Core.csproj" />
+  </ItemGroup>
+</Project>
