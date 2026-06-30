@@ -1,0 +1,8 @@
+C:\Users\herma\Desktop\projects\Scriptr\dist\_gui\Scriptr.pdb
+C:\Users\herma\Desktop\projects\Scriptr\dist\_gui\D3DCompiler_47_cor3.dll
+C:\Users\herma\Desktop\projects\Scriptr\dist\_gui\PenImc_cor3.dll
+C:\Users\herma\Desktop\projects\Scriptr\dist\_gui\PresentationNative_cor3.dll
+C:\Users\herma\Desktop\projects\Scriptr\dist\_gui\vcruntime140_cor3.dll
+C:\Users\herma\Desktop\projects\Scriptr\dist\_gui\wpfgfx_cor3.dll
+C:\Users\herma\Desktop\projects\Scriptr\dist\_gui\Scriptr.Core.pdb
+C:\Users\herma\Desktop\projects\Scriptr\dist\_gui\Scriptr.exe

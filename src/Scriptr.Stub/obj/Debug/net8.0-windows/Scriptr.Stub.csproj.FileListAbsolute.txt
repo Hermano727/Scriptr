@@ -16,3 +16,4 @@ C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Stub\obj\Debug\net8.0-window
 C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Stub\obj\Debug\net8.0-windows\Scriptr.Stub.pdb
 C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Stub\obj\Debug\net8.0-windows\Scriptr.Stub.genruntimeconfig.cache
 C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Stub\obj\Debug\net8.0-windows\ref\Scriptr.Stub.dll
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Stub\obj\Debug\net8.0-windows\Scriptr.Stub.sourcelink.json

@@ -1,0 +1,12 @@
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\bin\Release\net8.0-windows\Scriptr.Core.deps.json
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\bin\Release\net8.0-windows\Scriptr.Core.dll
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\bin\Release\net8.0-windows\Scriptr.Core.pdb
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Release\net8.0-windows\Scriptr.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Release\net8.0-windows\Scriptr.Core.AssemblyInfoInputs.cache
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Release\net8.0-windows\Scriptr.Core.AssemblyInfo.cs
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Release\net8.0-windows\Scriptr.Core.csproj.CoreCompileInputs.cache
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Release\net8.0-windows\Scriptr.Core.sourcelink.json
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Release\net8.0-windows\Scriptr.Core.dll
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Release\net8.0-windows\refint\Scriptr.Core.dll
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Release\net8.0-windows\Scriptr.Core.pdb
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Release\net8.0-windows\ref\Scriptr.Core.dll

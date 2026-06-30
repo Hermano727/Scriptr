@@ -21,17 +21,19 @@ internal sealed class MainForm : Form
     private AppPhase _phase = AppPhase.Idle;
 
     // Controls
-    private ToolStrip            _strip       = null!;
-    private ToolStripButton      _btnOpen     = null!;
-    private ToolStripButton      _btnSave     = null!;
-    private ToolStripButton      _btnRecord   = null!;
-    private ToolStripButton      _btnPlay     = null!;
-    private ToolStripButton      _btnCompile  = null!;
-    private ToolStripButton      _btnSettings = null!;
-    private StatusStrip          _statusStrip = null!;
-    private ToolStripStatusLabel _statusLabel = null!;
-    private NotifyIcon           _trayIcon    = null!;
-    private System.Windows.Forms.Timer _timer = null!;
+    private ToolStrip            _strip          = null!;
+    private ToolStripButton      _btnOpen        = null!;
+    private ToolStripButton      _btnSave        = null!;
+    private ToolStripButton      _btnRecord      = null!;
+    private ToolStripButton      _btnPlay        = null!;
+    private ToolStripButton      _btnCompile     = null!;
+    private ToolStripButton      _btnSettings    = null!;
+    private Label                _hintLabel      = null!;
+    private ContextMenuStrip     _playContextMenu = null!;
+    private StatusStrip          _statusStrip    = null!;
+    private ToolStripStatusLabel _statusLabel    = null!;
+    private NotifyIcon           _trayIcon       = null!;
+    private System.Windows.Forms.Timer _timer    = null!;
 
     public MainForm(AppState state, Icon appIcon)
     {
@@ -49,7 +51,7 @@ internal sealed class MainForm : Form
         FormBorderStyle = FormBorderStyle.FixedToolWindow;
         TopMost         = true;
         StartPosition   = FormStartPosition.CenterScreen;
-        ClientSize      = new Size(510, 59);
+        ClientSize      = new Size(572, 76);
         MinimizeBox     = true;
         MaximizeBox     = false;
 
@@ -75,8 +77,36 @@ internal sealed class MainForm : Form
             new ToolStripSeparator(),
             _btnRecord, _btnPlay,
             new ToolStripSeparator(),
-            _btnCompile, _btnSettings
+            _btnSettings, _btnCompile
         ]);
+
+        // ── Keybind hint label ───────────────────────────────────────────────
+        _hintLabel = new Label
+        {
+            Left      = 0,
+            Top       = 36,
+            Width     = 572,
+            Height    = 17,
+            TextAlign = ContentAlignment.MiddleCenter,
+            ForeColor = Color.Red,
+            Font      = new Font("Segoe UI", 7.5f),
+            BackColor = SystemColors.Control,
+            Text      = "",
+            Visible   = false
+        };
+
+        // ── Play right-click: iteration menu ─────────────────────────────────
+        _playContextMenu = new ContextMenuStrip();
+        _playContextMenu.Items.Add("Play once",       null, (_, _) => ApplyLoopConfig(PlaybackConfig.Once(_state.PlayConfig.SpeedMultiplier)));
+        _playContextMenu.Items.Add("Repeat 5×",       null, (_, _) => ApplyLoopConfig(PlaybackConfig.Repeat(5,   _state.PlayConfig.SpeedMultiplier)));
+        _playContextMenu.Items.Add("Repeat 10×",      null, (_, _) => ApplyLoopConfig(PlaybackConfig.Repeat(10,  _state.PlayConfig.SpeedMultiplier)));
+        _playContextMenu.Items.Add("Repeat 50×",      null, (_, _) => ApplyLoopConfig(PlaybackConfig.Repeat(50,  _state.PlayConfig.SpeedMultiplier)));
+        _playContextMenu.Items.Add("Repeat 100×",     null, (_, _) => ApplyLoopConfig(PlaybackConfig.Repeat(100, _state.PlayConfig.SpeedMultiplier)));
+        _playContextMenu.Items.Add(new ToolStripSeparator());
+        _playContextMenu.Items.Add("Loop forever",    null, (_, _) => ApplyLoopConfig(PlaybackConfig.Forever(_state.PlayConfig.SpeedMultiplier)));
+        _playContextMenu.Items.Add(new ToolStripSeparator());
+        _playContextMenu.Items.Add("Custom count...", null, PlayCustomCount_Click);
+        _btnPlay.MouseDown += BtnPlay_MouseDown;
 
         // ── StatusStrip ──────────────────────────────────────────────────────
         _statusStrip = new StatusStrip { SizingGrip = false };
@@ -110,6 +140,7 @@ internal sealed class MainForm : Form
         _timer.Start();
 
         Controls.Add(_strip);
+        Controls.Add(_hintLabel);
         Controls.Add(_statusStrip);
 
         ResumeLayout(false);
@@ -170,6 +201,7 @@ internal sealed class MainForm : Form
         {
             _recording?.Dispose();
             _playback?.Dispose();
+            _playContextMenu.Dispose();
         }
         base.Dispose(disposing);
     }
@@ -324,7 +356,8 @@ internal sealed class MainForm : Form
         {
             session.Dispose();
             _recording = null;
-            _state.Events = events;
+            _state.Events   = events;
+            _state.FilePath = null;
             _phase = AppPhase.Idle;
             SynchronizeUiState();
             SetStatus(events.Count > 0
@@ -450,6 +483,21 @@ internal sealed class MainForm : Form
         _btnPlay.Text        = playing ? "⏹ Abort" : "▶ Play";
         _btnPlay.ForeColor   = playing ? Color.DarkGreen : SystemColors.ControlText;
         _btnPlay.Enabled     = (idle && _state.HasEvents) || playing;
+
+        if (recording)
+        {
+            _hintLabel.Text    = $"Press {_state.RecordHotkey.DisplayText} to stop recording";
+            _hintLabel.Visible = true;
+        }
+        else if (playing)
+        {
+            _hintLabel.Text    = $"Press {_state.AbortHotkey.DisplayText} to abort playback";
+            _hintLabel.Visible = true;
+        }
+        else
+        {
+            _hintLabel.Visible = false;
+        }
     }
 
     private void SetStatus(string text) => _statusLabel.Text = text;
@@ -463,6 +511,58 @@ internal sealed class MainForm : Form
             _btnRecord.ForeColor = _blinkState ? Color.Red : Color.DarkRed;
             SetStatus($"🔴 Recording — {session.EventCount:N0} events");
         }
+    }
+
+    // ── Play context menu ─────────────────────────────────────────────────────
+
+    private void BtnPlay_MouseDown(object? sender, MouseEventArgs e)
+    {
+        if (e.Button != MouseButtons.Right || _phase != AppPhase.Idle) return;
+        _playContextMenu.Show(_strip, new Point(_btnPlay.Bounds.Left, _btnPlay.Bounds.Bottom));
+    }
+
+    private void ApplyLoopConfig(PlaybackConfig cfg)
+    {
+        _state.PlayConfig = cfg;
+        string mode = cfg.Mode switch
+        {
+            LoopMode.PlayOnce   => "once",
+            LoopMode.RepeatN    => $"×{cfg.RepeatCount}",
+            LoopMode.Continuous => "∞",
+            _                   => ""
+        };
+        _btnPlay.ToolTipText = $"Toggle Playback Loop  ({_state.AbortHotkey.DisplayText}) — {mode}";
+    }
+
+    private void PlayCustomCount_Click(object? sender, EventArgs e)
+    {
+        using var dlg = new Form
+        {
+            Text            = "Custom Repeat Count",
+            FormBorderStyle = FormBorderStyle.FixedDialog,
+            StartPosition   = FormStartPosition.CenterParent,
+            ClientSize      = new Size(240, 82),
+            MinimizeBox     = false,
+            MaximizeBox     = false
+        };
+        var lbl    = new Label  { Text = "Repeat count:", Left = 12,  Top = 14, Width = 90, Height = 20 };
+        var txt    = new TextBox{ Left = 108, Top = 10, Width = 112,
+                                  Text = _state.PlayConfig.RepeatCount > 0
+                                         ? _state.PlayConfig.RepeatCount.ToString() : "1" };
+        var ok     = new Button { Text = "OK",     Left = 60,  Top = 46, Width = 75, DialogResult = DialogResult.OK };
+        var cancel = new Button { Text = "Cancel", Left = 148, Top = 46, Width = 75, DialogResult = DialogResult.Cancel };
+        dlg.Controls.AddRange([lbl, txt, ok, cancel]);
+        dlg.AcceptButton = ok;
+        dlg.CancelButton = cancel;
+
+        TopMost = false;
+        try
+        {
+            if (dlg.ShowDialog(this) != DialogResult.OK) return;
+            if (!int.TryParse(txt.Text.Trim(), out int n) || n < 1) return;
+            ApplyLoopConfig(PlaybackConfig.Repeat(n, _state.PlayConfig.SpeedMultiplier));
+        }
+        finally { TopMost = true; }
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────────

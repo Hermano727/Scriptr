@@ -198,3 +198,4 @@ C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Cli\obj\Debug\net8.0-windows
 C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Cli\obj\Debug\net8.0-windows\win-x64\Scriptr.Cli.pdb
 C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Cli\obj\Debug\net8.0-windows\win-x64\Scriptr.Cli.genruntimeconfig.cache
 C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Cli\obj\Debug\net8.0-windows\win-x64\ref\Scriptr.Cli.dll
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Cli\obj\Debug\net8.0-windows\win-x64\Scriptr.Cli.sourcelink.json

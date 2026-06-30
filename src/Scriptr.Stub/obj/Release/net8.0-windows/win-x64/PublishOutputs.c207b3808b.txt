@@ -1,0 +1,3 @@
+C:\Users\herma\Desktop\projects\Scriptr\dist\_stub\Scriptr.Stub.pdb
+C:\Users\herma\Desktop\projects\Scriptr\dist\_stub\Scriptr.Core.pdb
+C:\Users\herma\Desktop\projects\Scriptr\dist\_stub\Scriptr.Stub.exe

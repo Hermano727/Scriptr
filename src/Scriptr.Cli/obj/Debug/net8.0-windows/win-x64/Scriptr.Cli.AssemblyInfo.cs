@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Scriptr.Cli")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67c936a7e9f033f383ec86c462e3d4345af5b6ca")]
 [assembly: System.Reflection.AssemblyProductAttribute("Scriptr.Cli")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Scriptr.Cli")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

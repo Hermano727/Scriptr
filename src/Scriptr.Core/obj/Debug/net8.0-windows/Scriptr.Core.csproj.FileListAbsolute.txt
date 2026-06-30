@@ -9,3 +9,4 @@ C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Debug\net8.0-window
 C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Debug\net8.0-windows\refint\Scriptr.Core.dll
 C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Debug\net8.0-windows\Scriptr.Core.pdb
 C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Debug\net8.0-windows\ref\Scriptr.Core.dll
+C:\Users\herma\Desktop\projects\Scriptr\src\Scriptr.Core\obj\Debug\net8.0-windows\Scriptr.Core.sourcelink.json
